@@ -1,0 +1,54 @@
+int button = 2;
+int min = 5;
+
+void setup() {
+  
+  pinMode(button, INPUT);
+  for (int i = 3; i <= 13; i++) {
+    pinMode(i, OUTPUT);
+  }
+  
+  pinMode(button, INPUT);
+  
+  delay(2000);
+
+}
+
+void loop(){
+  
+  for (int i = min; i <= 13; i++) {
+    
+    if (min != 14) {
+      
+      if (digitalRead(button) == LOW) {
+        digitalWrite(i, HIGH);
+        delay(55.55555556);
+
+        if (i == 5) {
+          digitalWrite(13, LOW);
+        } else {
+          digitalWrite(i - 1, LOW);
+        }
+      } if (digitalRead(button) == HIGH) {
+        if (i == 8){
+          for (int i = min; i<= 13; i++) {
+            digitalWrite(i, HIGH);
+          }
+        }
+      	min = 14;
+      	delay(1500);
+      } 
+    }      
+  }
+  
+  if (min == 14) {
+      
+    if (digitalRead(button) == HIGH) {
+      for (int i = 5; i <= 13; i++) {
+        digitalWrite(i, LOW);
+      }
+     min = 5;
+     delay(1500);
+    }
+  }
+}
